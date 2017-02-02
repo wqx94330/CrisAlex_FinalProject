@@ -1,0 +1,39 @@
+Package: ProjectCrisalex
+Type: Package
+Title: Changes of vegetation within approximately 10 years in Brazil(Manaus)
+Version: 0.1.0
+
+Author: Cristina Gonzalez and Wan Quanxing
+
+
+Description: 
+
+
+This Project was created to check the changes in the vegetation in the middle of Amazonia in the 
+period of 9 years. The target place is Manaus one city present in the region of amazonia where
+the deforestation and changes in the landuses are common. 
+
+
+
+script: main.R (three more scripts with functions)
+
+First we wanted to check the vegetation index, with two images of Landsat 5 (2001, 2010) we produced 
+the NDVI and we calculated the difference to see the changes produced during 9 years.
+
+
+
+Script:Manaus_population_diff_NDVI
+
+After that, we took the data of population from 2000 and 2010, it is a shapefile with points
+georeferended in Manaus city. With these data of person per Km in each point we calculate the 
+difference of people during the 9 years to see in which parts increase or decrease the population.
+Everything is visualized in a interactive maps with different size in the circles depend on the 
+population size, a openstreetmap such as bacground and the difference of the NDVI of 9 years in 
+the municipality of Manaus. 
+
+
+the final result is present in the link in rpub (present in the other txt)
+
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
