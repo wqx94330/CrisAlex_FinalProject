@@ -24,12 +24,10 @@ ndvi_2010 <- function(){
 ndvi_dif <- function(){
 
   dif = c("firebrick4","firebrick3", "brown2","slateblue3","steelblue4","steelblue2","yellow1","greenyellow","olivedrab3","limegreen")
-  manaos <- brazil[c("1510", "1513", "1566", "1605", "1614", "1684"),]
 
   #Visualize the difference between the ndvis
   plot_difference <- spplot(NDVI_diff, colorkey =list(labels = list(at = seq(-1.8, 1.6, by=0.2))),
-                            col.regions=colorRampPalette(dif), main = "Differences in NDVI between 2001-2010",
-                            sp.layout = list("sp.polygons", manaos, col = "darkorchid3"))
+                            col.regions=colorRampPalette(dif), main = "Differences in NDVI between 2001-2010")
   return(plot_difference)
 
 }

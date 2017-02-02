@@ -5,7 +5,8 @@
 
 ##This is the script to produce the NDVI difference between 2001 and 2010
 
-#libraries and functions needed
+#libraries and functions needed. Check that all the libraries and functions are loaded
+#before starting with the script
 library(sp)
 library(rgdal)
 library(raster)
@@ -17,17 +18,16 @@ source("R/functions.R")
 source("R/pre_process.R")
 source("R/plot_results.R")
 install.packages('leaflet')
-install.packages('raster', repos = 'http://r-forge.r-project.org/', type = 'source')
 
 rm(list.files())
 
 #Directories necessaries for the script
 inDir <- "data"
-midDIr <- "midsteps"
+midDir <- "midsteps"
 landsatDir01 <- file.path("data", "landsat2001")
 landsatDir10 <- file.path("data", "landsat2010")
 outDir <- "output"
-midDIr
+
 #Create folders needed for the process
 pre_processing <- create_folders()
 
@@ -53,14 +53,10 @@ if (!file.exists(file.path(inDir, 'landsat2010.tar.gz'))) {
 #Input the file of landsat in 2001 and 2010
 ln01 <- input_landsat01()
 ln10 <- input_landsat10()
-ln01
+
 #Remove zeros values in the landsat images
 ln10[ln10 <= 0 ] <- NA
 ln01[ln01 <= 0 ] <- NA
-
-plot(ln01, 2)
-plot(ln01_ext,2)
-plot(ln10_ext,2)
 
 #strick the rasters
 ln01_trim <- trim(ln01, values = NA)
@@ -97,7 +93,6 @@ plot_ndvi10 <- ndvi_2010()
 ##Visualization of the results
 plot_ndvi01
 plot_ndvi10
-par(opar)
 
 
 ##Generate the final result
@@ -109,18 +104,11 @@ writeRaster(x=NDVI_diff, filename='midsteps/difference_ndvi.grd', datatype="FLT8
 hist(NDVI_diff, main= "Histogram difference NDVI")
 
 #####Plot the difference between years in ndvi####
-#First preparing a shapefile
-brazil <- readOGR(dsn = "boundaries", layer = "brazil_administrative")
-manaos <- brazil[c("1510", "1513", "1566", "1605", "1614", "1684"),]
-
-#plot the final result
 plot_difference <- ndvi_dif()
 plot_difference
 
-
 #Save the NDVI difference in png format for plotting with the population
 trellis.device(device="png", filename="output/plot_difference2.png")
-
 
 
 #####Population Part#####
